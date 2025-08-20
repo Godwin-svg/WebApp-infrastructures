@@ -5,7 +5,7 @@ terraform {
     bucket         = "inno-terraform-remote-state"
     key            = "terraform-module/webapp/terraform.tfstate"
     region         = "us-east-1"
-    profile        = "dev1"
+    profile        = "dev"
     dynamodb_table = "terraform-state-lock"
 
   }
