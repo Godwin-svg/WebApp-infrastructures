@@ -22,7 +22,7 @@ module "vpc" {
 
 }
 
-# # create nat-gateway module
+# # # create nat-gateway module
 # module "nat-gateway" {
 #   source                      = "git@github.com:Godwin-svg/Building-AWS-Infrastructure-with-Terraform-Modules.git//nat-gateway"
 #   region                      = local.region
@@ -36,12 +36,5 @@ module "vpc" {
 #   private_app_subnet_az1b_id  = module.vpc.private_app_subnet_az1b_id
 #   private_data_subnet_az1a_id = module.vpc.private_data_subnet_az1a_id
 #   private_data_subnet_az1b_id = module.vpc.private_data_subnet_az1b_id
-
-
-
-
-
-
-
 
 # }
