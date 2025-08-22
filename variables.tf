@@ -13,3 +13,7 @@ variable "private_app_subnet_az1b_cidr" {}
 variable "private_data_subnet_az1a_cidr" {}
 variable "private_data_subnet_az1b_cidr" {}
 
+
+# security group variables
+variable "ssh_ip" {}
+

@@ -28,6 +28,7 @@ module "nat-gateway" {
   region                      = local.region
   project_name                = local.project_name
   environment                 = local.environment
+  default_cidr                = var.default_cidr
   vpc_id                      = module.vpc.vpc_id
   internet_gateway            = module.vpc.internet_gateway
   public_subnet_az1a_id       = module.vpc.public_subnet_az1a_id
@@ -36,5 +37,17 @@ module "nat-gateway" {
   private_app_subnet_az1b_id  = module.vpc.private_app_subnet_az1b_id
   private_data_subnet_az1a_id = module.vpc.private_data_subnet_az1a_id
   private_data_subnet_az1b_id = module.vpc.private_data_subnet_az1b_id
+
+}
+
+
+# create security group module 
+module "security_group" {
+  source       = "git@github.com:Godwin-svg/Building-AWS-Infrastructure-with-Terraform-Modules.git//security-group"
+  project_name = local.project_name
+  environment  = local.environment
+  default_cidr = var.default_cidr
+  vpc_id       = module.vpc.vpc_id
+  ssh_ip       = var.ssh_ip
 
 }
