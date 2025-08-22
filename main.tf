@@ -22,19 +22,19 @@ module "vpc" {
 
 }
 
-# # # create nat-gateway module
-# module "nat-gateway" {
-#   source                      = "git@github.com:Godwin-svg/Building-AWS-Infrastructure-with-Terraform-Modules.git//nat-gateway"
-#   region                      = local.region
-#   project_name                = local.project_name
-#   environment                 = local.environment
-#   vpc_id                      = module.vpc.vpc_id
-#   internet_gateway            = module.vpc.internet_gateway
-#   public_subnet_az1a_id       = module.vpc.public_subnet_az1a_id
-#   public_subnet_az1b_id       = module.vpc.public_subnet_az1b_id
-#   private_app_subnet_az1a_id  = module.vpc.private_app_subnet_az1a_id
-#   private_app_subnet_az1b_id  = module.vpc.private_app_subnet_az1b_id
-#   private_data_subnet_az1a_id = module.vpc.private_data_subnet_az1a_id
-#   private_data_subnet_az1b_id = module.vpc.private_data_subnet_az1b_id
+# # create nat-gateway module
+module "nat-gateway" {
+  source                      = "git@github.com:Godwin-svg/Building-AWS-Infrastructure-with-Terraform-Modules.git//nat-gateway"
+  region                      = local.region
+  project_name                = local.project_name
+  environment                 = local.environment
+  vpc_id                      = module.vpc.vpc_id
+  internet_gateway            = module.vpc.internet_gateway
+  public_subnet_az1a_id       = module.vpc.public_subnet_az1a_id
+  public_subnet_az1b_id       = module.vpc.public_subnet_az1b_id
+  private_app_subnet_az1a_id  = module.vpc.private_app_subnet_az1a_id
+  private_app_subnet_az1b_id  = module.vpc.private_app_subnet_az1b_id
+  private_data_subnet_az1a_id = module.vpc.private_data_subnet_az1a_id
+  private_data_subnet_az1b_id = module.vpc.private_data_subnet_az1b_id
 
-# }
+}
