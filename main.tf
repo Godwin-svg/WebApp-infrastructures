@@ -53,7 +53,7 @@ module "security_group" {
 }
 
 
-data "aws_availability_zones" "available_zone"{}
+data "aws_availability_zones" "available_zone" {}
 # launch rds instance
 module "rds" {
   source                       = "git@github.com:Godwin-svg/Building-AWS-Infrastructure-with-Terraform-Modules.git//rds"
@@ -80,14 +80,14 @@ module "ssl_certificate" {
 
 # launch alb  
 module "alb" {
-source = "vgit@github.com:Godwin-svg/Building-AWS-Infrastructure-with-Terraform-Modules.git//alb"
-project_name = local.project_name
-environment = local.environment
-alb_security_group_id = module.security_group.alb_security_group_id
-public_subnet_az1a_id = module.vpc.public_subnet_az1a_id
-public_subnet_az1b_id = module.vpc.public_subnet_az1b_id
-target_type = var.target_type
-vpc_id = module.vpc.vpc_id
-certificate_arn = module.ssl_certificate.certificate_arn
-  
+  source                = "git@github.com:Godwin-svg/Building-AWS-Infrastructure-with-Terraform-Modules.git//alb"
+  project_name          = local.project_name
+  environment           = local.environment
+  alb_security_group_id = module.security_group.alb_security_group_id
+  public_subnet_az1a_id = module.vpc.public_subnet_az1a_id
+  public_subnet_az1b_id = module.vpc.public_subnet_az1b_id
+  target_type           = var.target_type
+  vpc_id                = module.vpc.vpc_id
+  certificate_arn       = module.ssl_certificate.certificate_arn
+
 }

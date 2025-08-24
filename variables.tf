@@ -25,7 +25,7 @@ variable "multi_az_deployment" {}
 
 # acm variables
 variable "domain_name" {}
-variable "alternative_names" {}  
+variable "alternative_names" {}
 
 # alb variables 
 variable "target_type" {}
