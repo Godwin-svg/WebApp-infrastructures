@@ -17,3 +17,15 @@ variable "private_data_subnet_az1b_cidr" {}
 # security group variables
 variable "ssh_ip" {}
 
+# variable for rds
+variable "database_snapshot_identifier" {}
+variable "database_instance_class" {}
+variable "database_instance_identifier" {}
+variable "multi_az_deployment" {}
+
+# acm variables
+variable "domain_name" {}
+variable "alternative_names" {}  
+
+# alb variables 
+variable "target_type" {}

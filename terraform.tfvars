@@ -13,3 +13,17 @@ private_data_subnet_az1b_cidr = "10.0.5.0/24"
 
 # security group variable
 ssh_ip = ["101.115.228.122/32"]
+
+# variable for rds
+database_snapshot_identifier = "wordpress-rds-snapshot"
+database_instance_class      = "db.t3.micro"
+database_instance_identifier = "wordpress-rds"
+multi_az_deployment          = "false"
+
+
+# acm variables
+domain_name       = "godwintechservices.com"
+alternative_names = "*.godwintechservices.com"
+
+# alb variables 
+target_type = "ip"

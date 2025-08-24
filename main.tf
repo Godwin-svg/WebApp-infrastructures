@@ -51,3 +51,43 @@ module "security_group" {
   ssh_ip       = var.ssh_ip
 
 }
+
+
+data "aws_availability_zones" "available_zone"{}
+# launch rds instance
+module "rds" {
+  source                       = "git@github.com:Godwin-svg/Building-AWS-Infrastructure-with-Terraform-Modules.git//rds"
+  project_name                 = local.project_name
+  environment                  = local.environment
+  private_data_subnet_az1a_id  = module.vpc.private_data_subnet_az1a_id
+  private_data_subnet_az1b_id  = module.vpc.private_data_subnet_az1b_id
+  database_snapshot_identifier = var.database_snapshot_identifier
+  database_instance_class      = var.database_instance_class
+  availability_zone_1          = data.aws_availability_zones.available_zone.names[0]
+  database_instance_identifier = var.database_instance_identifier
+  multi_az_deployment          = var.multi_az_deployment
+  database_security_group_id   = module.security_group.database_security_group_id
+
+}
+
+# request ssl certificate
+module "ssl_certificate" {
+  source            = "git@github.com:Godwin-svg/Building-AWS-Infrastructure-with-Terraform-Modules.git//acm"
+  domain_name       = var.domain_name
+  alternative_names = var.alternative_names
+
+}
+
+# launch alb  
+module "alb" {
+source = "vgit@github.com:Godwin-svg/Building-AWS-Infrastructure-with-Terraform-Modules.git//alb"
+project_name = local.project_name
+environment = local.environment
+alb_security_group_id = module.security_group.alb_security_group_id
+public_subnet_az1a_id = module.vpc.public_subnet_az1a_id
+public_subnet_az1b_id = module.vpc.public_subnet_az1b_id
+target_type = var.target_type
+vpc_id = module.vpc.vpc_id
+certificate_arn = module.ssl_certificate.certificate_arn
+  
+}
