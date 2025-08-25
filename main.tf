@@ -30,7 +30,7 @@ module "nat-gateway" {
   environment                 = local.environment
   default_cidr                = var.default_cidr
   vpc_id                      = module.vpc.vpc_id
-  internet_gateway            = module.vpc.internet_gateway
+  internet_gateway_id         = module.vpc.internet_gateway_id
   public_subnet_az1a_id       = module.vpc.public_subnet_az1a_id
   public_subnet_az1b_id       = module.vpc.public_subnet_az1b_id
   private_app_subnet_az1a_id  = module.vpc.private_app_subnet_az1a_id
@@ -89,5 +89,15 @@ module "alb" {
   target_type           = var.target_type
   vpc_id                = module.vpc.vpc_id
   certificate_arn       = module.ssl_certificate.certificate_arn
+
+}
+
+# create a s3 bucket
+module "s3-bucket" {
+  source               = "git@github.com:Godwin-svg/Building-AWS-Infrastructure-with-Terraform-Modules.git//s3"
+  project_name         = local.project_name
+  env_file_bucket_name = var.env_file_bucket_name
+  env_file_name        = var.env_file_name
+
 
 }

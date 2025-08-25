@@ -1,6 +1,6 @@
 # vpc variables
 region                        = "us-east-1"
-project_name                  = "WebApp"
+project_name                  = "webapp"
 environment                   = "dev"
 default_cidr                  = "0.0.0.0/0"
 vpc_cidr                      = "10.0.0.0/16"
@@ -27,3 +27,7 @@ alternative_names = "*.godwintechservices.com"
 
 # alb variables 
 target_type = "ip"
+
+# s3 variables
+env_file_bucket_name = "inno-ecs-env-file-bucket"
+env_file_name        = "rentzone.env"
